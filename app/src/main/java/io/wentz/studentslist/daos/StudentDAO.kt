@@ -15,4 +15,6 @@ class StudentDAO {
     fun all(): List<Student> = students.values.toList()
 
     fun get(i: Int) = students.values.toList()[i]
+
+    fun remove(student: Student) = students.remove(student.id)
 }
