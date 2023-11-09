@@ -4,6 +4,9 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ContextMenu
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -19,7 +22,6 @@ class StudentFormActivity : AppCompatActivity() {
     private lateinit var nameField: EditText
     private lateinit var phoneField: EditText
     private lateinit var emailField: EditText
-    private lateinit var saveButton: Button
     private lateinit var actionBar: Toolbar
 
     private val studentDao = StudentDAO()
@@ -48,16 +50,19 @@ class StudentFormActivity : AppCompatActivity() {
 
         setSupportActionBar(actionBar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        setupSaveButton()
     }
-    
-    private fun setupSaveButton() {
-        saveButton = findViewById(R.id.student_form_create_button)
-        saveButton.setOnClickListener {
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.activity_student_form_save, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.activity_student_form_save) {
             saveStudent()
             finish()
         }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun saveStudent() {

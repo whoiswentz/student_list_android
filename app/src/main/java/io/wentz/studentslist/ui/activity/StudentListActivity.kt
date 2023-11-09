@@ -30,9 +30,6 @@ class StudentListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_list)
 
-        studentDao.save(Student(name = "A", phone = "", email = ""))
-        studentDao.save(Student(name = "B", phone = "", email = ""))
-
         actionBar = findViewById(R.id.my_toolbar)
         actionBar.title = "Student List"
         setSupportActionBar(actionBar)
