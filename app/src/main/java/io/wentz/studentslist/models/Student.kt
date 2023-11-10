@@ -10,7 +10,6 @@ data class Student(
     val phone: String,
     val email: String
 ): Serializable {
-    @NonNull
     override fun toString(): String {
         return name
     }

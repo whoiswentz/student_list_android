@@ -27,20 +27,33 @@ class CustomAdapter(
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val inflatedView =
-            LayoutInflater.from(context).inflate(R.layout.item_student, parent, false)
-        val itemStudentName: TextView = inflatedView.findViewById(R.id.item_student_name)
-        val itemStudentPhone: TextView = inflatedView.findViewById(R.id.item_student_phone)
+        var view = convertView
+        val viewHolder: ViewHolder
+
+        if (view == null) {
+            view = LayoutInflater
+                .from(context)
+                .inflate(R.layout.item_student, parent, false)
+            viewHolder = ViewHolder(view)
+            view.tag = viewHolder
+        } else {
+            viewHolder = view.tag as ViewHolder
+        }
 
         val student = getItem(position)
 
-        itemStudentName.text = student.name
-        itemStudentPhone.text = student.phone
+        viewHolder.itemStudentName.text = student.name
+        viewHolder.itemStudentPhone.text = student.phone
 
-        return inflatedView
+        return view!!
     }
 
     fun clear() = items.clear()
     fun addAll(students: List<Student>) = items.addAll(students)
     fun remove(student: Student) = items.remove(student)
+
+    private class ViewHolder(view: View) {
+        val itemStudentName: TextView = view.findViewById(R.id.item_student_name)
+        val itemStudentPhone: TextView = view.findViewById(R.id.item_student_phone)
+    }
 }

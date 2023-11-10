@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">StudentsList</string>
+    <string name="student_name_hint">Student Name</string>
+    <string name="student_phone_hint">Student Phone</string>
+    <string name="student_email_hint">Student Email</string>
+    <string name="save_title_button">Save</string>
+    <string name="add_student_fab_description">Add Student</string>
+    <string name="remove_menu_item_title">Remove</string>
 </resources>
